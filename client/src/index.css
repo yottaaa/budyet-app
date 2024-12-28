@@ -1,0 +1,6 @@
+.custom-table {
+  border-radius: 25%;
+}
+.custom-card {
+  background: linear-gradient(90deg, rgba(34,30,30,1) 0%, rgba(37,34,34,0.8350937787224264) 56%, rgba(142,141,141,1) 100%) !important;
+}
