@@ -9,6 +9,7 @@ import expenseRoute from './routes/expenseRoute.js';
 import balanceRoute from './routes/balanceRoute.js';
 import { notFound, errorHandler } from './middlewares/errorMiddleware.js';
 import connectDB from './config/db.js';
+import { corsMiddleware } from './middlewares/corsMiddleware.js';
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ const app = express();
 
 // middleware
 app.use(helmet());
+app.use(corsMiddleware)
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());

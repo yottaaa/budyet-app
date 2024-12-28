@@ -13,14 +13,5 @@ export default defineConfig(({ mode }) => {
       __APP_ENV__: JSON.stringify(env.APP_ENV),
     },
     plugins: [react()],
-    server: {
-      port: 3000,
-      proxy: {
-        "/api": {
-          target: env.VITE_API_URL,
-          changeOrigin: true,
-        },
-      },
-    },
   };
 });

@@ -1,6 +1,6 @@
 import { apiSlice } from "./apiSlice";
 
-const BALANCE_URL = "/api/balances";
+const BALANCE_URL = `/api/balances`;
 
 export const balanceApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

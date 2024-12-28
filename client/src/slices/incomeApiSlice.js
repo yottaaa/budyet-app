@@ -1,6 +1,6 @@
 import { apiSlice } from "./apiSlice";
 
-const INCOME_URL = "/api/incomes";
+const INCOME_URL = `/api/incomes`;
 
 export const incomeApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
