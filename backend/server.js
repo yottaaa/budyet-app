@@ -1,3 +1,5 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
 import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
@@ -30,11 +32,29 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 // routes
-app.get('/', (req, res) => res.send('Hello World!'));
 app.use('/api/users', userRoutes);
 app.use('/api/incomes', incomeRoutes);
 app.use('/api/expenses', expenseRoute);
 app.use('/api/balances', balanceRoute);
+
+// static frontend
+if (process.env.NODE_ENV === 'production') {
+  // Get the directory name of the current module file
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+
+  console.log(__dirname); // Debug: logs the backend directory
+
+  // Serve static files from the `client/dist` directory
+  app.use(express.static(path.join(__dirname, '../client/dist')));
+
+  // For any other route, send the `index.html` file
+  app.get('*', (req, res) => 
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'))
+  );
+} else {
+  app.get('/', (req, res) => res.send('Hello World!'));
+}
 
 // error handler middleware
 app.use(notFound);
