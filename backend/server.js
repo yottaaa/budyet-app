@@ -11,7 +11,6 @@ import expenseRoute from './routes/expenseRoute.js';
 import balanceRoute from './routes/balanceRoute.js';
 import { notFound, errorHandler } from './middlewares/errorMiddleware.js';
 import connectDB from './config/db.js';
-import cors from "cors";
 
 dotenv.config();
 
@@ -23,10 +22,6 @@ const app = express();
 
 // middleware
 app.use(helmet());
-app.use(cors({
-  origin: process.env.CLIENT_URL || "*",
-  credentials: true,
-}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
