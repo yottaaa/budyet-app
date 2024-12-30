@@ -21,7 +21,17 @@ connectDB();
 const app = express();
 
 // middleware
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false, // Disable CSP if it conflicts with your setup
+}));
+const corsOptions = {
+  origin: process.env.CLIENT_URL || '*', // Add allowed origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+  credentials: true, // Allow cookies if needed
+  exposeHeaders: ['set-cookie'],
+};
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
