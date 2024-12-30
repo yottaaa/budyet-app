@@ -11,6 +11,7 @@ import expenseRoute from './routes/expenseRoute.js';
 import balanceRoute from './routes/balanceRoute.js';
 import { notFound, errorHandler } from './middlewares/errorMiddleware.js';
 import connectDB from './config/db.js';
+import cors from 'cors';
 
 dotenv.config();
 
